@@ -1,0 +1,85 @@
+<html>
+<head>
+<title>login </title>
+<style>
+.login-container 
+	{
+            	background-color: #ffffff;
+            	padding: 20px;
+            	border-radius: 5px;
+        	}
+
+.login-container table 
+	{
+            	width: 300px;
+          	border-collapse: collapse;
+        	}
+.login-container table td {
+         	 padding: 10px;
+       	 }
+.login-container table td input[type="text"],
+.login-container table td input[type="password"] 
+	{
+           	 width: 100%;
+           	 padding: 8px;
+           	 border: 1px solid #ccc;
+           	 border-radius: 3px;
+        	}
+.login-container table td input[type="submit"] 
+	{
+            	width: 100%;
+            	padding: 10px;
+            	background-color: #4CAF50;
+            	color: #fff;
+            	border: none;
+            	border-radius: 3px;
+            	cursor: pointer;
+        	}
+</style>
+</head>
+<body style="background: linear-gradient(45deg, #ff8a00, #FFC0CB, #DB7093);">
+<div >
+<a href="home page.html">
+    <img src="claysys-logo.png" align="right" alt="Image description">
+</a>
+</h1>
+</div>
+<br><br>
+<br>
+<div style="min-height: 100vh; display: flex; flex-direction: column;">
+<center>
+<div style="flex:1">
+<div style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #fff; border-radius: 8px;">
+<div class="login-container">
+        <h2>Log in</h2>
+        <form action="welcome.html" method="post">
+            <table>
+                <tr>
+                    <td>Username:</td>
+                    <td><input type="text" name="username" placeholder="Enter your username"></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" placeholder="Enter your password"></td>
+                </tr>
+                <tr>
+                    <td></td>
+	<td><input type="submit" value="Login" formtarget="_blank" formaction="welcome.html"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+<br>
+<br>
+Don't have an account?
+<a href="signup.html">
+Sign Up</a>
+</form>
+</div>
+</center>
+</div>
+<div style="padding: 20px; text-align: center;">
+<p>&copy; 2023 My Website. All rights reserved.</p>
+</div>
+</body>
+</html>
