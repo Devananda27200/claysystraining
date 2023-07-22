@@ -56,11 +56,12 @@
             <table>
                 <tr>
                     <td>Username:</td>
-                    <td><input type="text" name="username" placeholder="Enter your username"></td>
+                    <td><input type="text" name="username" placeholder="Enter your username" onfocusout="validateUsername()" required></td>
+<p id="usernameError" class="error-message"></p>
                 </tr>
                 <tr>
                     <td>Password:</td>
-                    <td><input type="password" name="password" placeholder="Enter your password"></td>
+                    <td><input type="password" name="password" placeholder="Enter your password" required></td>
                 </tr>
                 <tr>
                     <td></td>
@@ -81,5 +82,6 @@ Sign Up</a>
 <div style="padding: 20px; text-align: center;">
 <p>&copy; 2023 My Website. All rights reserved.</p>
 </div>
+<script src="validation.js"></script>
 </body>
 </html>
