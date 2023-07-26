@@ -1,4 +1,4 @@
-
+use db;
 --Task 3:SECOND HIGHEST SALARY
 SELECT 
 	MAX(GROSSS) AS SECOND_HIGHEST_SALARY FROM SALARIES
@@ -84,20 +84,12 @@ CREATE PROCEDURE sp_CRUD_Departments
         IF @action = 'CREATE'
         BEGIN
             INSERT INTO DEPARTMENT(NAME)
-            VALUES (@department_id)
+            VALUES (@dept_name)
         END
     
         IF @action = 'READ'
         BEGIN
-            IF @department_id IS NOT NULL
-            BEGIN
-                SELECT * FROM DEPARTMENT
-                WHERE DEPID = @department_id
-            END
-            ELSE
-            BEGIN
-                SELECT * FROM DEPARTMENT
-            END
+               SELECT * FROM DEPARTMENT
         END
     
         IF @action = 'UPDATE'
@@ -119,3 +111,8 @@ CREATE PROCEDURE sp_CRUD_Departments
             END
         END
     END
+
+EXEC sp_CRUD_Departments 0,'','READ'
+EXEC sp_CRUD_Departments 'PRODUCTION','CREATE'
+EXEC sp_CRUD_Departments 0,'','UPDATE'
+EXEC usp_Employee_Management 0,'',0,'','DELETE'
