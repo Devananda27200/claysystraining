@@ -1,149 +1,204 @@
 <html>
 <head>
-<title>Sign up </title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="errormsg.css">
-<script type="text/javascript">
-var citiesByState = {
-AndhraPradesh: ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati", "Nellore"],
-ArunachalPradesh: ["Itanagar", "Naharlagun"],
-Assam: ["Guwahati","Silchar","Dibrugarh","Jorhat","Nagaon"],
-Bihar: ["Patna","Gaya","Bhagalpur","Muzaffarpur","Darbhanga"],
-Chhattisgarh: ["Raipur","Bilaspur","Bhilai","Korba","Durg"],	
-Goa: ["Panaji","Margao","Vasco da Gama","Mapusa"],
-Gujarat: ["Ahmedabad","Surat","Vadodara","Rajkot","Gandhinagar"],
-Kerala: ["Thiruvananthapuram","Kochi Cochin","Kozhikode Calicut","Thrissur","Kollam"],
-Tamilnadu: ["Chennai","Coimbatore","Madurai","Tiruchirappalli Trichy","Salem"]
-}
-function makeSubmenu(value) {
-if(value.length==0) document.getElementById("city").innerHTML = "<option></option>";
-else {
-var citiesOptions = "";
-for(cityId in citiesByState[value]) {
-citiesOptions+="<option>"+citiesByState[value][cityId]+"</option>";
-}
-document.getElementById("city").innerHTML = citiesOptions;
-}
-}
-//function displaySelected() { 
-//var state = document.getElementById("states").value;
-//var city = document.getElementById("city").value;
-//alert(country+"\n"+city);
-//}
-function resetSelection() {
-document.getElementById("states").selectedIndex = 0;
-document.getElementById("city").selectedIndex = 0;
-}
-</script>
-</head>
-<body onload="resetSelection()" style="background: linear-gradient(45deg, #ff8a00, #FFC0CB, #DB7093);" >
-<form action="/signin.html">
+    <title>Sign up </title>
+    <link rel="stylesheet" href="errormsg.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url("wallpaper1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 1;
+            transition: opacity 1s ease; /* Transition effect with 1-second duration */
+        }
+    </style>
 
+    <style>
+        .form-container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 0px solid #ccc;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                display: inline-block;
+                width: 120px;
+                text-align: left;
+            }
+
+            .form-group input,
+            .form-group select {
+                width: 250px;
+                padding: 5px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+                text-align: left;
+            }
+
+        .error-message {
+            color: red;
+            display: none;
+        }
+
+        .submit-btn {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+    <script type="text/javascript">
+        var citiesByState = {
+            AndhraPradesh: ["Visakhapatnam", "Vijayawada", "Guntur", "Tirupati", "Nellore"],
+            ArunachalPradesh: ["Itanagar", "Naharlagun"],
+            Assam: ["Guwahati", "Silchar", "Dibrugarh", "Jorhat", "Nagaon"],
+            Bihar: ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Darbhanga"],
+            Chhattisgarh: ["Raipur", "Bilaspur", "Bhilai", "Korba", "Durg"],
+            Goa: ["Panaji", "Margao", "Vasco da Gama", "Mapusa"],
+            Gujarat: ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"],
+            Kerala: ["Thiruvananthapuram", "Kochi Cochin", "Kozhikode Calicut", "Thrissur", "Kollam"],
+            Tamilnadu: ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli Trichy", "Salem"]
+        }
+        function makeSubmenu(value) {
+            if (value.length == 0) document.getElementById("city").innerHTML = "<option></option>";
+            else {
+                var citiesOptions = "";
+                for (cityId in citiesByState[value]) {
+                    citiesOptions += "<option>" + citiesByState[value][cityId] + "</option>";
+                }
+                document.getElementById("city").innerHTML = citiesOptions;
+            }
+        }
+
+        function resetSelection() {
+            document.getElementById("states").selectedIndex = 0;
+            document.getElementById("city").selectedIndex = 0;
+        }
+    </script>
+</head>
+<body onload="resetSelection(),calculateAge()">
+<form action="signin.html">
 <div >
-<h1 align="center">Sign Up
+<h1>
 <a href="home page.html">
     <img src="claysys-logo.png" align="right" alt="Image description">
 </a></h1>
 </div>
 <div style="min-height: 100vh; display: flex; flex-direction: column;">
 <center>
-<div style="flex:1">
-<div style="max-width: 400px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #fff; border-radius: 8px;">
-    
-<table style="max-width: 700px; margin: 0 auto; padding: 20px; border: 0px solid #ccc; background-color: #fff; border-radius: 5px;">
-    <tr>
-        <td><label for="firstname">Firstname:</label></td>
-        <td><input type="text" id="firstName" onfocusout="validateFirstName()" required></td><p id="firstNameError" class="error-message"></p>
-    </tr>
-    <tr>
-        <td><label for="lastname">Lastname:</label></td>
-        <td><input type="text" id="lastName" onfocusout="validateLastName()" required></td>
-<p id="lastNameError" class="error-message"></p>
-    </tr>
-    <tr>
-        <td><label for="date">Date:</label></td>
-        <td><input type="date" id="datepicker" name="selectedDate"></td>
-    </tr>
-    <tr>
-        <td><label for="age">Age:</label></td>
-        <td><input type="text" id="age" name="age" required></td>
-    </tr>
-    <tr>
-           <td><label>Gender:</label></td>
-           <td><input type="radio" id="male" name="gender" value="male"><label for="male">Male</label><br>
-           <input type="radio" id="female" name="gender" value="female"><label for="female">Female</label><br>
-           <input type="radio" id="other" name="gender" value="other"><label for="other">Other</label></td>
-    </tr>
-    <tr>
-        <td><label for="phone">Phone number:</label></td>
-        <td><input type="tel" id="mobileNumber" onfocusout="validateMobileNumber()" required></td>
-<p id="mobileNumberError" style="color: red; display: none;">Please enter a valid mobile number.</p>
-    </tr>
-    <tr>
-        <td><label for="email">Email id:</label></td>
-        <td><input type="email" id="email" name="email" Onfocusout="validateEmail()" required></td>
-<p id="emailError" style="color: red; display: none;">Please enter a valid email address.</p>
-    </tr>
-    <tr>
-        <td><label for="address">Address:</label></td>
-        <td><input type="text" id="address" name="address" required></td>
-   </tr>
-    <tr>
-        <td><label for="state">State:</label></td>
-        <td>
-<select id="states" size="1" onchange="makeSubmenu(this.value)" onload>
-    <option value="" disabled selected>-- Select State --</option>
-    <option>AndhraPradesh</option>
-    <option>ArunachalPradesh</option>
-    <option>Assam</option>
-    <option>Bihar</option>
-    <option>Chhattisgarh</option>
-    <option>Goa</option>
-    <option>Gujarat</option>
-    <option>Kerala</option>
-    <option>Tamilnadu</option>
-</select>
-        </td>
-    </tr>
-    <tr>
-        <td><label for="cities">Select City:</label></td>
-<td>
-<select id="city" size="1">
-   <option value="" disabled selected>-- Select City --</option>
-   <option></option>
-</select>
+    <div style="flex:1">
+        
+        <div class="form-container">
+            <div style="font-family:'Footlight MT';font-size:50px;" align="center">Sign up</div><br />
+            <div class="form-group">
+                <label for="firstName">First name</label>
+                :<input type="text" id="firstName" onblur="validateFirstName()" required>
+                <p id="firstNameError" style="color: red;"></p>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last name</label>
+                :<input type="text" id="lastName" onblur="validateLastName()" required>
+                <p id="lastNameError" style="color:red;"></p>
+            </div>
+            <div class="form-group">
+                <label for="datepicker">Date of birth</label>
+                :<input type="date" id="birthdate" name="selectedDate" max="" onclick="disableFutureDates()"  required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                :<input type="text" id="age" name="age" readonly><br />
 
-</td>        
-    </tr>
-    <tr>
-        <td><label for="username">Username:</label></td>
-        <td><input type="text" id="username" name="username" onfocusout="validateUsername()" required></td>
-<p id="usernameError" class="error-message"></p>
-    </tr>
-    <tr>
-        <td><label for="password">Password:</label></td>
-        <td><input type="password" id="password" name="password"  required></td>
-<p id="passwordError" class="error-message"></p>
-    </tr>
-    <tr>
-        <td><label for="confirmPassword">Confirm Password:</label></td>
-        <td><input type="password" id="confirmPassword" name="confirmPassword" onfocusout="validatePasswordMatch()" required></td>
-<p id="passwordError" class="error-message"></p>
-    </tr>
-    <tr>
-        <td colspan="2" align="center">
-           <input type="submit" value="Sign Up" onclick="validateForm()" style="padding: 10px; background-color: #4CAF50; color: #fff; border: none; border-radius: 3px; cursor: pointer;">
-        </td>
-    </tr>
-</table>
-</div>
+            </div>
+            
+            <div class="form-group">
+                <input type="radio" id="male" name="gender" value="male"><label for="male">Male</label><br>
+                <input type="radio" id="female" name="gender" value="female"><label for="female">Female</label><br>
+                <input type="radio" id="other" name="gender" value="other"><label for="other">Other</label><br>
+            </div>
+
+
+            <div class="form-group">
+                <label for="mobileNumber">Phone number</label>
+                :<input type="tel" id="mobileNumber" onblur="validateMobileNumber()" required>
+                <span id="mobileNumberError" class="error-message">Please enter a valid mobile number.</span>
+            </div>
+            <div class="form-group">
+                <label for="email">Email id</label>
+                :<input type="email" id="email" onblur="validateEmail()" required>
+                <span id="emailError" class="error-message">Please enter a valid email address.</span>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                :<input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="states">State</label>
+                :
+                <select id="states" size="1" onchange="makeSubmenu(this.value)">
+                    <option value="" disabled selected>-- Select State --</option>
+                    <option>AndhraPradesh</option>
+                    <option>ArunachalPradesh</option>
+                    <option>Assam</option>
+                    <option>Bihar</option>
+                    <option>Chhattisgarh</option>
+                    <option>Goa</option>
+                    <option>Gujarat</option>
+                    <option>Kerala</option>
+                    <option>Tamilnadu</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="city">Select city</label>
+                :
+                <select id="city" size="1">
+                    <option value="" disabled selected>-- Select City --</option>
+                    <option></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="username1">Username</label>
+                :<input type="text" id="username1" name="username" oninput="validateUsername()" required>
+                <p id="usernameError" style="color:red;"></p>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                :<input type="password" id="password" oninput="validatePassword1()" required>
+      	            <p id="passwordErrorSpan" style="color:red;"></p>
+            </div>
+            <div class="form-group">
+                <label for="confirmPassword">Confirm password</label>
+                :<input type="password" id="confirmPassword" name="confirmPassword" oninput="validatePasswordMatch()" required>
+                <p id="passwordError" style="color: red;"></p>
+            </div>
+            <div  align="center">
+                <a href="signin.html">
+                    <input type="submit" value="Sign Up" onclick="validateForm()" style="padding: 10px; background-color: #4CAF50; color: #fff; border: none; border-radius: 3px; cursor: pointer;">
+                </a>
+            </div>
+        </div>
+        
+    </div>
 </center>
 </div>
+
 <div style="padding: 20px; text-align: center;">
-<p>&copy; 2023 My Website. All rights reserved.</p>
+<span>&copy;2023 My Website. All rights reserved.</span>
 </div>
-</div>
+
 <script src="validation.js"></script>
-<script>
+</form>
 </body>
 </html>

@@ -1,44 +1,65 @@
 <html>
 <head>
-<title>login </title>
-<style>
-.login-container 
-	{
-            	background-color: #ffffff;
-            	padding: 20px;
-            	border-radius: 5px;
-        	}
+    <title>login </title>
+    <link rel="stylesheet" href="errormsg.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url("wallpaper1.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 1;
+            transition: opacity 1s ease; /* Transition effect with 1-second duration */
+            font-family: Arial, sans-serif;
+        }
 
-.login-container table 
-	{
-            	width: 300px;
-          	border-collapse: collapse;
-        	}
-.login-container table td {
-         	 padding: 10px;
-       	 }
-.login-container table td input[type="text"],
-.login-container table td input[type="password"] 
-	{
-           	 width: 100%;
-           	 padding: 8px;
-           	 border: 1px solid #ccc;
-           	 border-radius: 3px;
-        	}
-.login-container table td input[type="submit"] 
-	{
-            	width: 100%;
-            	padding: 10px;
-            	background-color: #4CAF50;
-            	color: #fff;
-            	border: none;
-            	border-radius: 3px;
-            	cursor: pointer;
-        	}
-</style>
+        .login-container {
+            width: 300px;
+            margin: 100px auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+            .login-container h2 {
+                text-align: center;
+            }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+            .form-group label {
+                display: block;
+                margin-bottom: 5px;
+                text-align: left;
+            }
+
+            .form-group input {
+                width: 100%;
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 3px;
+            }
+
+                .form-group input[type="submit"] {
+                    background-color: #4CAF50;
+                    color: #fff;
+                    cursor: pointer;
+                }
+
+                    .form-group input[type="submit"]:hover {
+                        background-color: #45a049;
+                    }
+    </style>
 </head>
-<body style="background: linear-gradient(45deg, #ff8a00, #FFC0CB, #DB7093);">
+<body>
 <div >
+<h1>
 <a href="home page.html">
     <img src="claysys-logo.png" align="right" alt="Image description">
 </a>
@@ -50,32 +71,31 @@
 <center>
 <div style="flex:1">
 <div style="max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #fff; border-radius: 8px;">
-<div class="login-container">
-        <h2>Log in</h2>
+
         <form action="welcome.html" method="post">
-            <table>
-                <tr>
-                    <td>Username:</td>
-                    <td><input type="text" name="username" placeholder="Enter your username" onfocusout="validateUsername()" required></td>
-<p id="usernameError" class="error-message"></p>
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input type="password" name="password" placeholder="Enter your password" required></td>
-                </tr>
-                <tr>
-                    <td></td>
-	<td><input type="submit" value="Login" formtarget="_blank" formaction="welcome.html"></td>
-                </tr>
-            </table>
+            <div class="login-container">
+                <h2>Sign in</h2>
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter your username" oninput="validateUsername1()" required>
+                    <span id="usernameError" class="error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" placeholder="Enter your password" oninput="validatePassword1()" required>
+                    <span id="passwordError" style="color: red;"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" formtarget="_blank" formaction="welcome.html">
+                </div>
+            </div>
         </form>
-    </div>
 <br>
 <br>
 Don't have an account?
 <a href="signup.html">
 Sign Up</a>
-</form>
+</div>
 </div>
 </center>
 </div>
