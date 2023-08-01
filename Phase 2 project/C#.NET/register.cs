@@ -114,7 +114,8 @@ namespace Phase_2_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text == "" && textBox9.Text == "")
+            //if (textBox1.Text == "" && textBox9.Text == "")
+            if(string.IsNullOrWhiteSpace(textBox1.Text) && string.IsNullOrWhiteSpace(textBox2.Text)&& string.IsNullOrWhiteSpace(textBox3.Text) && string.IsNullOrWhiteSpace(textBox4.Text)&& string.IsNullOrWhiteSpace(textBox5.Text) && string.IsNullOrWhiteSpace(textBox6.Text)&& string.IsNullOrWhiteSpace(textBox7.Text) && string.IsNullOrWhiteSpace(textBox8.Text))
             {
                 MessageBox.Show("Enter the details!!");
             }

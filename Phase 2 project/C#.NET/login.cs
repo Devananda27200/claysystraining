@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Xml.Linq;
 
 namespace Phase_2_Project
 {
@@ -31,7 +32,7 @@ namespace Phase_2_Project
 
         private void blogin_Click(object sender, EventArgs e)
         {
-            if(textBox1.Text=="" && textBox2.Text=="")
+            if(string.IsNullOrWhiteSpace(textBox1.Text) && string.IsNullOrWhiteSpace(textBox2.Text))
             {
                 MessageBox.Show("Enter username and password!");
             }
