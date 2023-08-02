@@ -24,6 +24,8 @@ namespace Phase_2_Project
         public register()
         {
             InitializeComponent();
+            dateTimePicker1.MaxDate = DateTime.Today.AddYears(-18);
+            dateTimePicker1.ValueChanged += dateTimePicker1_ValueChanged;
 
         }
 
@@ -36,8 +38,17 @@ namespace Phase_2_Project
 
         public void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
+            
             DateTime selectedDate = dateTimePicker1.Value;
             label10.Text = selectedDate.ToString("yyyy-MM-dd");
+            DateTime currentDate = DateTime.Today;
+            DateTime eighteenAge = currentDate.AddYears(-18);
+
+            if (selectedDate > eighteenAge)
+            {
+                MessageBox.Show("You must be at least 18 years old.", "Invalid Date", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dateTimePicker1.Value = eighteenAge;
+            }
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -65,10 +76,7 @@ namespace Phase_2_Project
                 cities.Items.Add("vasco da gama");
 
             }
-            //    cities.Items.Add(String.Format("{0}",
-            //    comboBox1.SelectedItem, i.ToString()));
-
-            //cities.SelectedIndex = 0;
+            
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
@@ -110,12 +118,14 @@ namespace Phase_2_Project
         {
             con.Open();
             textBox1.Focus();
+            dateTimePicker1.MaxDate = DateTime.Today;
+            label10.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //if (textBox1.Text == "" && textBox9.Text == "")
-            if(string.IsNullOrWhiteSpace(textBox1.Text) && string.IsNullOrWhiteSpace(textBox2.Text)&& string.IsNullOrWhiteSpace(textBox3.Text) && string.IsNullOrWhiteSpace(textBox4.Text)&& string.IsNullOrWhiteSpace(textBox5.Text) && string.IsNullOrWhiteSpace(textBox6.Text)&& string.IsNullOrWhiteSpace(textBox7.Text) && string.IsNullOrWhiteSpace(textBox8.Text))
+            
+            if(string.IsNullOrWhiteSpace(textBox1.Text) || string.IsNullOrWhiteSpace(textBox2.Text)|| string.IsNullOrWhiteSpace(textBox3.Text) || string.IsNullOrWhiteSpace(textBox4.Text)|| string.IsNullOrWhiteSpace(textBox5.Text) || string.IsNullOrWhiteSpace(textBox6.Text)|| string.IsNullOrWhiteSpace(textBox7.Text) || string.IsNullOrWhiteSpace(textBox8.Text))
             {
                 MessageBox.Show("Enter the details!!");
             }
@@ -142,9 +152,8 @@ namespace Phase_2_Project
                     textBox7.Clear();
                     textBox8.Clear();
                     textBox9.Clear();
-                    comboBox1.SelectedIndex = 0;
-                    cities.Items.Clear();
-                    cities.SelectedIndex = 0;
+                    comboBox1.SelectedItem = "--select--";
+                    cities.SelectedItem = null;
                     dateTimePicker1.Value = DateTime.Now; 
                     label10.Visible=false;
                     label15.Visible = false;

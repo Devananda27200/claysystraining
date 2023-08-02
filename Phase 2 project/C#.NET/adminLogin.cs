@@ -37,5 +37,12 @@ namespace Phase_2_Project
             login login = new login();
             login.Show();
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            allUserDetails obj = new allUserDetails();
+            obj.Show();
+        }
     }
 }

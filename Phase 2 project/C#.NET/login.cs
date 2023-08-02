@@ -32,7 +32,7 @@ namespace Phase_2_Project
 
         private void blogin_Click(object sender, EventArgs e)
         {
-            if(string.IsNullOrWhiteSpace(textBox1.Text) && string.IsNullOrWhiteSpace(textBox2.Text))
+            if(string.IsNullOrWhiteSpace(lPassword.Text) && string.IsNullOrWhiteSpace(lUsername.Text))
             {
                 MessageBox.Show("Enter username and password!");
             }
@@ -42,8 +42,8 @@ namespace Phase_2_Project
                 {
                     
                     SqlCommand cmd = new SqlCommand("select userType from login where username=@username and password=@password", con);
-                    cmd.Parameters.AddWithValue("@username", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@password", textBox2.Text);
+                    cmd.Parameters.AddWithValue("@username", lPassword.Text);
+                    cmd.Parameters.AddWithValue("@password", lUsername.Text);
                     rdr = cmd.ExecuteReader();
                     if (rdr.Read())
                     {
@@ -52,22 +52,22 @@ namespace Phase_2_Project
                         {
                             this.Hide();
                             adminLogin obj = new adminLogin();
-                            user = textBox1.Text.ToUpper();
+                            user = lPassword.Text.ToUpper();
                             obj.ShowDialog();
                         }
                         else
                         {
                             this.Hide();
                             user obj = new user();
-                            user = textBox1.Text.ToUpper();
+                            user = lPassword.Text.ToUpper();
                             obj.ShowDialog();
                         }
                     }
                     else
                     {
                         MessageBox.Show("Invalid Username or Password!!");
-                        textBox1.Clear();
-                        textBox2.Clear();
+                        lPassword.Clear();
+                        lUsername.Clear();
 
                     }
                     rdr.Close();

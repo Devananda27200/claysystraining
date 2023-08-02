@@ -23,15 +23,16 @@ namespace Phase_2_Project
         {
             try
             {
-                sql = "select password,username from register where eId='" + textBox1.Text + "'";
+                sql = "select password,username from register where eId='" + uEid.Text + "'";
                 cmd = new SqlCommand(sql, con);
                 rdr = cmd.ExecuteReader();
                 rdr.Read();
                 username = rdr[0].ToString();
-                textBox2.Text = username;
+                uUname.Text = username;
                 password = rdr[1].ToString();
-                textBox3.Text = password;
+                uPass.Text = password;
 
+                uEid.Enabled = false;
 
             }
             catch (Exception ex)
@@ -44,11 +45,27 @@ namespace Phase_2_Project
         private void userUpdate_Load(object sender, EventArgs e)
         {
             con.Open();
+            uEid.Focus();
         }
 
         public userUpdate()
         {
             InitializeComponent();
+        }
+
+        private void uEid_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -60,23 +77,30 @@ namespace Phase_2_Project
 
         private void button2_Click(object sender, EventArgs e)
         {
-            try
+            if (string.IsNullOrEmpty(uEid.Text) || string.IsNullOrWhiteSpace(uPass.Text))
             {
-                sql = "update register set password='" + textBox3.Text + "' where eId=" + textBox1.Text + "";
-                cmd = new SqlCommand(sql, con);
-                cmd.ExecuteNonQuery();
-                sql = "update login set password='" + textBox3.Text + "' where username='" + textBox2.Text + "'";
-                cmd = new SqlCommand(sql, con);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Your Details have been updated!!", "Message");
-                textBox1.Text = " ";
-                textBox2.Text = " ";
-                textBox3.Text = " ";
-                
+                MessageBox.Show("Fields Empty!!!");
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);
+                try
+                {
+                    sql = "update register set password='" + uPass.Text + "' where eId=" + uEid.Text + "";
+                    cmd = new SqlCommand(sql, con);
+                    cmd.ExecuteNonQuery();
+                    sql = "update login set password='" + uPass.Text + "' where username='" + uUname.Text + "'";
+                    cmd = new SqlCommand(sql, con);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Your Details have been updated!!", "Message");
+                    uEid.Text = " ";
+                    uUname.Text = " ";
+                    uPass.Text = " ";
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
     }
