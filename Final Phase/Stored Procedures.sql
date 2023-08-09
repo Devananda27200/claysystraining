@@ -4,33 +4,26 @@ use MvcProject;
 
 drop table tBregister;
 
- create table tBregister(
- empId int PRIMARY KEY	IDENTITY(1000,1),
- empFirstName varchar(50),
- empLastName varchar(50),
- empDateOfBirth date,
- empAge int,
- empGender varchar(25),
+create table [dbo].[tBregister]
+(
+ empId int PRIMARY KEY	IDENTITY(1,1) not null,
+ empName varchar(100),
  empEmail varchar(50),
- empAddress varchar(100),
- empUsername varchar(50),
- empPassword varchar(50)
- );
+ empPassword varchar(50),
+ empGender char(1),
+ empImage varchar(max)
+);
 
  CREATE PROCEDURE SP_InsertEmployee
-    @FirstName VARCHAR(50),
-    @LastName VARCHAR(50),
-	@DateOfBirth VARCHAR(50),
-	@Age INT,
-	@Gender VARCHAR(10),
-    @Email VARCHAR(100),
-    @Address VARCHAR(200),
-	@Username VARCHAR(50),
-	@Password VARCHAR(50)
+    @empName varchar(100),
+	@empEmail varchar(50),
+	@empPassword varchar(50),
+	@empGender char(1),
+	@empImage varchar(max)
 AS
 BEGIN
-    INSERT INTO tBregister (empFirstName, empLastName,empDateOfBirth,empAge, empGender,empEmail,empAddress,empUsername,empPassword)
-    VALUES (@FirstName, @LastName,@DateOfBirth,@Age,@Gender, @Email,@Address,@Username,@Password)
+    INSERT INTO tBregister (empName,empEmail,empPassword,empGender,empImage)
+    VALUES (@empName, @empEmail,@empPassword,@empGender,@empImage)
 END
 
  create proc SP_ReadEmployee
@@ -39,5 +32,7 @@ END
  select * from tBregister;
  end
 
+ exec SP_InsertEmployee "Devananda","deva@gmail.com","deva123",'F',"C:\Users\nanda\Desktop\nanda.jpg";
 
+ exec SP_ReadEmployee
  select * from tBregister;
