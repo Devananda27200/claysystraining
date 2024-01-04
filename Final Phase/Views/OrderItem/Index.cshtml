@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@section scripts {
+    <script>
+        $(document).ready(function () {
+            // Show a dialog box to inform the user about the successful order
+            Swal.fire({
+                title: 'Order Successful!',
+                text: 'Thank you for your purchase.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        });
+    </script>
+}
+
+<div class="container">
+    <h2>Order Successful</h2>
+    <p>Your order has been successfully placed. Thank you for shopping with us!</p>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.17/dist/sweetalert2.all.min.js"></script>

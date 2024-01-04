@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <style>
+        .user {
+            position: relative;
+        }
+
+        #logo {
+            display: inline-block;
+            margin: 1px;
+            float: left;
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
+        <div class="container">
+            <a href="#"><img id="logo" src="https://eshopper.ng/wp-content/uploads/2021/01/e-shopper-1.png" /></a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="space">
+                <div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li>@Html.ActionLink("Products ", "Index", "Products", new { area = "" }, new { @class = "nav-link" })</li>
+                        <li><a href="@Url.Action("Index","AboutUs")" class="btn btn-info btn-lg">@*@Html.ActionLink("About Us ", "Index", "AboutUs", new { area = "" }, new { @class = "nav-link" })*@</li>
+                        <li>@Html.ActionLink("Sign out ", "Index", "Logout", new { area = "" }, new { @class = "nav-link" })</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav><br /><br />
+    <div class="row">
+        <div class="col-lg-8 text-left">
+            <div onclick="window.location = '@Url.Action("Index","PostItem")';" class="btn btn-primary">☺ Sell an Item ☺ !!</div>
+            <div class="pad-6"></div>
+        </div>
+    </div>
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - E-Shopper <span class="pull-right">Developed by Group GD</span></p>
+
+        </footer>
+    </div>
+
+</body>
+</html>
+
+

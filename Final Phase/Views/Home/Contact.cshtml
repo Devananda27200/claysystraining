@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Contact";
+}
+
+<main aria-labelledby="title">
+
+    <div style="max-width: 1500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #E6E6FA; border-radius: 8px;">
+        <div>
+            <div>
+                <div style="font-family:'Footlight MT';font-size:50px;">Contact us</div>
+                <p>Please fill out the form below to get in touch with us.</p>
+            </div>
+        </div>
+        <div>
+            <div><label for="name">Name:</label></div>
+            <div><input type="text" id="name" name="name" required></div>
+        </div>
+        <div>
+            <div><label for="email">Email:</label></div>
+            <div><input type="email" id="email" name="email" required></div>
+        </div>
+        <div>
+            <div><label for="subject">Subject:</label></div>
+            <div><input type="text" id="subject" name="subject" required></div>
+        </div>
+        <div>
+            <div><label for="message">Message:</label></div>
+            <div><textarea id="message" name="message" rows="4" required></textarea></div>
+        </div>
+        <div>
+            <div>
+                <a href="~/Content/css/thanks.html">
+                    <input type="submit" value="Sumbit your response" style="padding: 10px; background-color: #4CAF50; color: #fff; border: none; border-radius: 3px; cursor: pointer;">
+                </a>
+            </div>
+        </div>
+    </div>
+    <center>
+        <div style="flex:1">
+        </div>
+        <div style="padding: 20px; text-align: center;">
+            <div style="max-width: 1500px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; background-color: #fff; border-radius: 8px;">
+                <address>
+                    E-Shopper Pvt Ltd<br>
+                    Banglore<br>
+                    India, 682303<br>
+                    Tel :425.555.0100
+                </address>
+
+                <address>
+                    General Email: info@eshopper.com<br>
+                    Support Email: support@eshopper.com<br>
+                    Careers Email: hr@eshopper.com<br>
+                </address>
+            </div>
+        </div>
+    </center>
+</main>

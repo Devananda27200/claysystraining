@@ -1,0 +1,181 @@
+﻿﻿
+@{
+    ViewBag.Title = "Home";
+    <link href="~/Content/css/slideshow.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-image: url('../../content/images/wallpaper1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 1;
+        }
+    </style>
+
+
+}
+<div class="slideshow-container">
+
+    <div class="mySlides carousel-fade">
+        <div class="numbertext">1 / 5</div>
+        <img src="~/Content/images/product (1).jpg">
+        <div class="text"></div>
+    </div>
+
+    <div class="mySlides carousel-fade">
+        <div class="numbertext">2 / 5</div>
+        <img src="~/Content/images/product (2).jpg">
+        <div class="text"></div>
+    </div>
+
+    <div class="mySlides carousel">
+        <div class="numbertext">3 / 5</div>
+        <img src="~/Content/images/product (3).jpg">
+        <div class="text"></div>
+    </div>
+    <div class="mySlides carousel">
+        <div class="numbertext">4 / 5</div>
+        <img src="~/Content/images/product (4).jpg">
+        <div class="text"></div>
+    </div>
+    <div class="mySlides carousel">
+        <div class="numbertext">5 / 5</div>
+        <img src="~/Content/images/product (5).jpg">
+        <div class="text"></div>
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">❮</a>
+    <a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+    <span class="dot" onclick="currentSlide(4)"></span>
+    <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+    }
+</script>
+<div>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="row">
+                <form action="@Url.Action("Index", "Products")" method="get" id="jsearchform">
+                    <div class="col-lg-4">
+                        <div class="form-label">Keyword</div>
+                        <input type="text" class="form-control" name="keyword" placeholder="ie - Galaxy alpha, lenovo" />
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-label">Category</div>
+                        <select class="form-control" name="category_id">
+                            <option value="0">Any category...</option>
+                            @if (ViewBag.categories != null)
+                            {
+                                foreach (E_ShoppingPortal.Models.Category cat in ViewBag.categories)
+                                {
+                                    <option value="@cat.id">@cat.name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="form-label">&nbsp;</div>
+                        <div class="btn btn-default" onclick="$('#jsearchform').submit();"><span class="btn btn-success btn-lg">Search</span></div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div class="row">
+        <div class="col-lg-4">
+            <ul class="list-group">
+                @if (ViewBag.categories != null)
+                {
+                    foreach (E_ShoppingPortal.Models.Category cat in ViewBag.categories)
+                    {
+                        <li class="list-group-item"><a href="@Url.Action("Index", "Products", new { category_id = cat.id })">@cat.name</a></li>
+                    }
+                }
+            </ul>
+
+        </div>
+
+
+        <div class="col-lg-8">
+            @if (ViewBag.items != null)
+            {
+                foreach (E_ShoppingPortal.Models.Item item in ViewBag.items)
+                {
+                    <!--product item-->
+
+                    <div class="col-lg-6 col-md-6 product-item">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                @item.itemName<br>
+                                <span class="label label-danger">@item.category.name</span>
+                            </div>
+                            <div class="panel-body">
+                                <div class="product-image" style="background-image:url('Content/Uploads/@item.imageFile')"></div>
+                                <div class="product-info">
+
+                                    <h3>Rs @item.price.ToString("N02")/-</h3>
+                                    <div class="description">
+                                        <p>@E_ShoppingPortal.Models.eShopperNetwork.formatDescription(item.description)</p>
+                                    </div>
+                                    <div class="btn btn-block btn-primary" onclick="window.location='@Url.Action("Index", "Item", new { item_id = item.id })'">View product</div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ product item-->
+                }
+            }
+
+
+            <div class="pad-6"></div>
+            <a href="@Url.Action("Index","Products")"><span class="glyphicon glyphicon-shopping-cart"></span> More products</a>
+        </div>
+
+
+    </div>
+</div>
